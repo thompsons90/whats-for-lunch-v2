@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { apiKey } from '../assets/myKey';
+import { StartButton } from '../utils/Buttons.styles';
 
 interface Recipe {
   vegetarian: boolean;
   vegan: boolean;
   glutenFree: boolean;
-  // Add other properties based on the recipe structure
-  // ...
-
-  title: string; // Assuming 'title' is a common property in each recipe
+  title: string;
 }
 
 interface Data {
@@ -47,9 +45,7 @@ const ApiCall: React.FC = () => {
 
   return (
     <div>
-      <button onClick={handleReloadClick} disabled={loading}>
-        Reload Data
-      </button>
+      <StartButton onClick={handleReloadClick} disabled={loading}/>
       {loading ? (
         <p>Loading...</p>
       ) : (
