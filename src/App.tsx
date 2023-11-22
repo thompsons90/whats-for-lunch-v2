@@ -1,5 +1,5 @@
 import './App.css'
-import ApiCall from './components/apiCall'
+import ApiCall from './components/ApiCall'
 
 function App() {
 
