@@ -27,7 +27,7 @@ const Randomized = () => {
         checkedIcon={<img src={moon} alt="moon" height="100%" width="100%" />}
         />
         </ToggleDiv>
-      <ApiCall />
+      <ApiCall isDarkMode={checked}/>
     </RandomizedContainer>
   );
 };

@@ -2,7 +2,7 @@
 // import PropTypes from "prop-types";
 import startButton from '../assets/icons/power-button.png'
 import styled from "styled-components";
-import { buttonTheme, globalTheme } from "./Themes";
+import { buttonTheme, darkTheme, globalTheme, lightTheme } from "./Themes";
 
 const gradient = `
   background: ${buttonTheme.primaryButtonDefaultGradientLight};
@@ -90,36 +90,36 @@ export const DisabledButton = styled.button`
   }
 `;
 
-export const StartButton = styled.button`
-background: url(${startButton}) no-repeat;
-width: 100px; /* Set the width and height based on your image size */
-height: 100px;
-border: none;
-background-size: contain;
-background-position: center;
-border: none;
-border-radius: 50%;
-cursor: pointer;
-color: #000000; /* Change the color as needed */
-font-size: 16px;
-transition: all 5s ease;
+export const StartButton = styled.button<{ isDarkMode: boolean }>`
+  background: url(${startButton}) no-repeat;
+  width: 100px; /* Set the width and height based on your image size */
+  height: 100px;
+  border: none;
+  background-size: contain;
+  background-position: center;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: ${(props) => (props.isDarkMode ? darkTheme.text : lightTheme.toggle )};
+  font-size: 16px;
+  // transition: all 2s ease;
 
-&:hover {
-  background-color: ${globalTheme.primary}; // Use the hover background color from the theme
-  box-shadow: ${boxShadow};
-  transform: ${hoverTransform};
-  transition: all 0.2s ease;
-}
+  &:hover {
+    background-color: ${globalTheme.primary}; // Use the hover background color from the theme
+    box-shadow: ${boxShadow};
+    transform: ${hoverTransform};
+    transition: all 0.2s ease;
+  }
 
-&:active {
-  background-color: ${buttonTheme.primaryButtonHoverDark};
-  box-shadow: none;
-  transform: ${pressTransform};
-  transition: all 0s ease;
-}
+  &:active {
+    background-color: ${buttonTheme.primaryButtonHoverDark};
+    box-shadow: none;
+    transform: ${pressTransform};
+    transition: all 0s ease;
+  }
 
-@media (max-width: 768px) {
-  padding: 10px 20px;
-  font-size: 14px;
-}
+  @media (max-width: 768px) {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
 `;
