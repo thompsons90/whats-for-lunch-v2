@@ -1,13 +1,15 @@
 export const lightTheme = {
     name: "light",
     text: "#363537",
-    body: "#E2E2E2"
+    body: "#E2E2E2",
+    toggle: "#9cc7dd"
   };
   
   export const darkTheme = {
     name: "dark",
     text: "#559fc2",
     body: "#363537"
+    
   };
   
   export const globalTheme = {

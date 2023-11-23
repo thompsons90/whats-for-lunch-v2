@@ -29,7 +29,7 @@ const disabledGradient = `
 const boxShadow = "5px 5px 5px 0px rgba(0, 0, 0, 0.3)";
 const hoverBoxShadow = "5px 5px 5px 0px rgba(0, 0, 0, 0.5)";
 const hoverTransform = "translate(-2px, -2px)";
-const pressTransform = "translate(0, 0)";
+const pressTransform = "translate(0, 0) rotate(720deg)";
 const disabledTextColor = buttonTheme.disabledButtonBorderAndText;
 
 // Create the styled button component
@@ -102,18 +102,20 @@ border-radius: 50%;
 cursor: pointer;
 color: #000000; /* Change the color as needed */
 font-size: 16px;
-transition: all 0.2s ease;
+transition: all 5s ease;
 
 &:hover {
   background-color: ${globalTheme.primary}; // Use the hover background color from the theme
   box-shadow: ${boxShadow};
   transform: ${hoverTransform};
+  transition: all 0.2s ease;
 }
 
 &:active {
   background-color: ${buttonTheme.primaryButtonHoverDark};
   box-shadow: none;
   transform: ${pressTransform};
+  transition: all 0s ease;
 }
 
 @media (max-width: 768px) {

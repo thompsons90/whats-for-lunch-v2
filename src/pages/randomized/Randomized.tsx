@@ -2,8 +2,11 @@
 
 import { atom, useAtom } from 'jotai';
 import Switch from 'react-switch';
-import { RandomizedContainer } from './Randomized.styles';
+import { RandomizedContainer, ToggleDiv } from './Randomized.styles';
 import ApiCall from '../../components/ApiCall';
+import  moon  from '../../assets/icons/moon.svg'
+import  sun  from '../../assets/icons/sun.svg'
+import { darkTheme, lightTheme } from '../../utils/Themes';
 
 const checkedAtom = atom(false);
 
@@ -16,13 +19,18 @@ const Randomized = () => {
 
   return (
     <RandomizedContainer isDarkMode={checked}>
-      <label>
-        <span>Light/Dark Mode:</span>
-        <Switch onChange={handleChange} checked={checked} />
-      </label>
+        <ToggleDiv>
+        <Switch onChange={handleChange} checked={checked} 
+        offColor={lightTheme.toggle}
+        onColor={darkTheme.text}
+        uncheckedIcon={<img src={sun} alt="sun" height="100%" width="100%" />}
+        checkedIcon={<img src={moon} alt="moon" height="100%" width="100%" />}
+        />
+        </ToggleDiv>
       <ApiCall />
     </RandomizedContainer>
   );
 };
 
 export default Randomized;
+ 

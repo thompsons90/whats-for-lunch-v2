@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { apiKey } from '../assets/myKey';
 import { StartButton } from '../utils/Buttons.styles';
+import { StartButtonContainer } from './ApiCall.styles';
 
 interface Recipe {
   vegetarian: boolean;
@@ -44,20 +45,22 @@ const ApiCall: React.FC = () => {
   };
 
   return (
-    <div>
+    <StartButtonContainer>
       <StartButton onClick={handleReloadClick} disabled={loading}/>
+      <div>
       {loading ? (
         <p>Loading...</p>
-      ) : (
-        <div>
+        ) : (
+          <div>
           {/* Loop through recipes and display their titles */}
           {apiData?.recipes.map((recipe, index) => (
             <p key={index}>Recipe Title: {recipe.title}</p>
-          ))}
+            ))}
           {/* Add more components to display other recipe properties if needed */}
         </div>
       )}
-    </div>
+      </div>
+    </StartButtonContainer>
   );
 };
 
