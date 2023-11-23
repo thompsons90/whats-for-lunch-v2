@@ -1,6 +1,7 @@
 // import React from "react";
 // import PropTypes from "prop-types";
 import startButton from '../assets/icons/power-button.png'
+import downArrow from '../assets/icons/down-arrow.png'
 import styled from "styled-components";
 import { buttonTheme, darkTheme, globalTheme, lightTheme } from "./Themes";
 
@@ -29,7 +30,8 @@ const disabledGradient = `
 const boxShadow = "5px 5px 5px 0px rgba(0, 0, 0, 0.3)";
 const hoverBoxShadow = "5px 5px 5px 0px rgba(0, 0, 0, 0.5)";
 const hoverTransform = "translate(-2px, -2px)";
-const pressTransform = "translate(0, 0) rotate(720deg)";
+const pressTransform = "translate(0, 0)";
+const rotateTransform = "rotate(720deg)"
 const disabledTextColor = buttonTheme.disabledButtonBorderAndText;
 
 // Create the styled button component
@@ -97,7 +99,6 @@ export const StartButton = styled.button<{ isDarkMode: boolean }>`
   border: none;
   background-size: contain;
   background-position: center;
-  border: none;
   border-radius: 50%;
   cursor: pointer;
   background-color: ${(props) => (props.isDarkMode ? darkTheme.text : lightTheme.toggle )};
@@ -114,7 +115,7 @@ export const StartButton = styled.button<{ isDarkMode: boolean }>`
   &:active {
     background-color: ${buttonTheme.primaryButtonHoverDark};
     box-shadow: none;
-    transform: ${pressTransform};
+    transform: ${pressTransform} ${rotateTransform};
     transition: all 0s ease;
   }
 
@@ -123,3 +124,30 @@ export const StartButton = styled.button<{ isDarkMode: boolean }>`
     font-size: 14px;
   }
 `;
+
+export const DetailsButton = styled.button`
+background: url(${downArrow}) no-repeat;
+width: 30px;
+height: 30px;
+background-size: contain;
+background-position: center;
+cursor: pointer;
+
+&:hover {
+  background-color: ${globalTheme.primary}; // Use the hover background color from the theme
+  box-shadow: ${boxShadow};
+  transform: ${hoverTransform};
+  transition: all 0.2s ease;
+}
+
+&:active {
+  background-color: ${buttonTheme.primaryButtonHoverDark};
+  box-shadow: none;
+  transform: ${pressTransform};
+  transition: all 0s ease;
+}
+
+@media (max-width: 768px) {
+  padding: 10px 20px;
+  font-size: 14px;
+`

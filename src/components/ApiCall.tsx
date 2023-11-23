@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { apiKey } from '../assets/myKey';
-import { StartButton } from '../utils/Buttons.styles';
+import { DetailsButton, StartButton } from '../utils/Buttons.styles';
 import { StartButtonContainer } from './ApiCall.styles';
 import { Recipe } from '../constants';
 
@@ -16,6 +16,7 @@ interface ApiCallProps {
 const ApiCall: React.FC<ApiCallProps> = ({ isDarkMode }) => {
   const [apiData, setApiData] = useState<Data | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showDetails, setShowDetails] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -43,6 +44,10 @@ const ApiCall: React.FC<ApiCallProps> = ({ isDarkMode }) => {
     fetchData();
   };
 
+  const handleDetailsClick = () => {
+    setShowDetails(!showDetails)
+  }
+
   return (
     <StartButtonContainer>
       <StartButton onClick={handleReloadClick} disabled={loading} isDarkMode={isDarkMode} />
@@ -64,8 +69,8 @@ const ApiCall: React.FC<ApiCallProps> = ({ isDarkMode }) => {
                   <li>Health Score: {recipe.healthScore}</li>
                   <li>Likes: {recipe.aggregateLikes}</li>
                 </ul>
-                <span>Details...</span>
-                <ul>
+                <span>Details <DetailsButton onClick={handleDetailsClick} /></span>
+                <ul style={{display:`showDetails ? block: none`}}>
                   <li>Preparation Mins: {recipe.preparationMinutes}</li>
                   <li>Cooking Mins: {recipe.cookingMinutes}</li>
                   <li>Summary: {recipe.summary}</li>
