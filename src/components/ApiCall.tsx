@@ -13,10 +13,11 @@ interface ApiCallProps {
   isDarkMode: boolean;
 }
 
-const ApiCall: React.FC<ApiCallProps> = ({ isDarkMode }) => {
+const ApiCall: React.FC<ApiCallProps> = () => {
   const [apiData, setApiData] = useState<Data | null>(null);
   const [loading, setLoading] = useState(true);
   const [showDetails, setShowDetails] = useState(false);
+ 
 
   const fetchData = async () => {
     try {
@@ -46,11 +47,14 @@ const ApiCall: React.FC<ApiCallProps> = ({ isDarkMode }) => {
 
   const handleDetailsClick = () => {
     setShowDetails(!showDetails)
+    console.log(showDetails)
   }
 
   return (
     <StartButtonContainer>
-      <StartButton onClick={handleReloadClick} disabled={loading} isDarkMode={isDarkMode} />
+      <StartButton onClick={handleReloadClick} disabled={loading} 
+      // isDarkMode={isDarkMode} 
+      />
       <div>
         {loading ? (
           <p>Loading...</p>
@@ -59,9 +63,9 @@ const ApiCall: React.FC<ApiCallProps> = ({ isDarkMode }) => {
             {/* Loop through recipes and display their titles */}
             {apiData?.recipes.map((recipe, index) => (
               <div key={index}>
-                <img src={recipe.image} alt={`Recipe ${index + 1}`} />
+                <img src={recipe.image} alt={`Recipe ${index + 1}`} style={{ width: '80%', borderRadius: '15%' }}/>
                 <p>Recipe: {recipe.title}</p>
-                <ul>
+                <ul style={{listStyle: 'none'}}>
                   <li>Diets: {recipe.diets.join(', ')}</li>
                   <li>Ready in: {recipe.readyInMinutes} minutes</li>
                   <li>Cheap? {recipe.cheap ? 'Yes' : 'No'}</li>
@@ -70,10 +74,13 @@ const ApiCall: React.FC<ApiCallProps> = ({ isDarkMode }) => {
                   <li>Likes: {recipe.aggregateLikes}</li>
                 </ul>
                 <span>Details <DetailsButton onClick={handleDetailsClick} /></span>
-                <ul style={{display:`showDetails ? block: none`}}>
+                <div style={{ display: showDetails ? 'block' : 'none', height: 'auto', overflow: 'auto' }}>
+                <ul style={{listStyle: 'none'}}>
                   <li>Preparation Mins: {recipe.preparationMinutes}</li>
                   <li>Cooking Mins: {recipe.cookingMinutes}</li>
-                  <li>Summary: {recipe.summary}</li>
+                  <li>Summary:
+                    {recipe.summary}
+                    </li>
                   <li>
                     Instructions:
                     {recipe.analyzedInstructions.map((instruction, i) => (
@@ -93,12 +100,27 @@ const ApiCall: React.FC<ApiCallProps> = ({ isDarkMode }) => {
                     ))}
                   </li>
                 </ul>
+                </div>
               </div>
             ))}
           </div>
         )}
       </div>
     </StartButtonContainer>
+    // <div>
+    //   <StartButton onClick={handleReloadClick} disabled={loading}/>
+    //   {loading ? (
+    //     <p>Loading...</p>
+    //   ) : (
+    //     <div>
+    //       {/* Loop through recipes and display their titles */}
+    //       {apiData?.recipes.map((recipe, index) => (
+    //         <p key={index}>Recipe Title: {recipe.title}</p>
+    //       ))}
+    //       {/* Add more components to display other recipe properties if needed */}
+    //     </div>
+    //   )}
+    // </div>
   );
 };
 
