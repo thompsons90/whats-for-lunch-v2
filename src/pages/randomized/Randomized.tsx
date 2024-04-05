@@ -1,9 +1,10 @@
 // Randomized.tsx
 
 import { atom, useAtom } from 'jotai';
-import Switch from 'react-switch';
+// import Switch from 'react-switch';
 import { RandomizedContainer } from './Randomized.styles';
 import ApiCall from '../../components/ApiCall';
+// import { HeaderContainer } from '../../components/Header.styles';
 
 const checkedAtom = atom(false);
 
@@ -16,11 +17,17 @@ const Randomized = () => {
 
   return (
     <RandomizedContainer isDarkMode={checked}>
+      {/* <HeaderContainer>
       <label>
         <span>Light/Dark Mode:</span>
         <Switch onChange={handleChange} checked={checked} />
       </label>
-      <ApiCall isDarkMode={checked}/>
+      </HeaderContainer> */}
+      <ApiCall 
+      isDarkMode={checked}
+      handleChange={handleChange}
+      // checked={checked}
+      />
     </RandomizedContainer>
   );
 };

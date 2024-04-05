@@ -94,8 +94,8 @@ export const DisabledButton = styled.button`
 
 export const StartButton = styled.button`
 background: url(${startButton}) no-repeat;
-width: 100px; /* Set the width and height based on your image size */
-height: 100px;
+width: 30px; /* Set the width and height based on your image size */
+height: 30px;
 border: none;
 background-size: contain;
 background-position: center;

@@ -3,7 +3,8 @@ import { apiKey } from '../assets/myKey';
 import { DetailsButton, StartButton } from '../utils/Buttons.styles';
 import { StartButtonContainer } from './ApiCall.styles';
 import { Recipe } from '../constants';
-
+import { HeaderContainer, LabelContainer } from './Header.styles';
+import Switch from 'react-switch';
 
 interface Data {
   recipes: Recipe[];
@@ -11,9 +12,10 @@ interface Data {
 
 interface ApiCallProps {
   isDarkMode: boolean;
+  handleChange: () => void;
 }
 
-const ApiCall: React.FC<ApiCallProps> = () => {
+const ApiCall: React.FC<ApiCallProps> = ({ isDarkMode, handleChange }) => {
   const [apiData, setApiData] = useState<Data | null>(null);
   const [loading, setLoading] = useState(true);
   const [showDetails, setShowDetails] = useState(false);
@@ -51,15 +53,19 @@ const ApiCall: React.FC<ApiCallProps> = () => {
   }
 
   return (
-    <StartButtonContainer>
-      <StartButton onClick={handleReloadClick} disabled={loading} 
-      // isDarkMode={isDarkMode} 
-      />
+    <StartButtonContainer style={{ paddingTop: showDetails ? '50px' : '20' }}>
+      <HeaderContainer>
+      <StartButton onClick={handleReloadClick} disabled={loading} />
+        <LabelContainer>
+          <span>Light/Dark Mode:</span>
+          <Switch onChange={handleChange} checked={isDarkMode} />
+        </LabelContainer>
+      </HeaderContainer>
       <div>
         {loading ? (
           <p>Loading...</p>
         ) : (
-          <div>
+          <div style={{textAlign: 'left'}}>
             {/* Loop through recipes and display their titles */}
             {apiData?.recipes.map((recipe, index) => (
               <div key={index}>
@@ -107,20 +113,6 @@ const ApiCall: React.FC<ApiCallProps> = () => {
         )}
       </div>
     </StartButtonContainer>
-    // <div>
-    //   <StartButton onClick={handleReloadClick} disabled={loading}/>
-    //   {loading ? (
-    //     <p>Loading...</p>
-    //   ) : (
-    //     <div>
-    //       {/* Loop through recipes and display their titles */}
-    //       {apiData?.recipes.map((recipe, index) => (
-    //         <p key={index}>Recipe Title: {recipe.title}</p>
-    //       ))}
-    //       {/* Add more components to display other recipe properties if needed */}
-    //     </div>
-    //   )}
-    // </div>
   );
 };
 
