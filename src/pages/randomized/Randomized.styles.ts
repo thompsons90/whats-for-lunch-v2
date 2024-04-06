@@ -8,7 +8,6 @@ interface RandomizedContainerProps {
   export const RandomizedContainer = styled.div<RandomizedContainerProps>`
     height: 100vh;
     width: 100vw;
-    border: 3px solid red;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

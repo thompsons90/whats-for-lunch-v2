@@ -44,6 +44,7 @@ const ApiCall: React.FC<ApiCallProps> = ({ isDarkMode, handleChange }) => {
 
   const handleReloadClick = () => {
     setLoading(true);
+    setShowDetails(false);
     fetchData();
   };
 
@@ -80,7 +81,9 @@ const ApiCall: React.FC<ApiCallProps> = ({ isDarkMode, handleChange }) => {
                   <li>Likes: {recipe.aggregateLikes}</li>
                 </ul>
                 <span>Details <DetailsButton onClick={handleDetailsClick} /></span>
-                <div style={{ display: showDetails ? 'block' : 'none', height: 'auto', overflow: 'auto' }}>
+                <div >
+
+                <div style={{ display: showDetails ? 'block' : 'none', height: '80vh', overflow: 'auto' }}>
                 <ul style={{listStyle: 'none'}}>
                   <li>Preparation Mins: {recipe.preparationMinutes}</li>
                   <li>Cooking Mins: {recipe.cookingMinutes}</li>
@@ -106,6 +109,7 @@ const ApiCall: React.FC<ApiCallProps> = ({ isDarkMode, handleChange }) => {
                     ))}
                   </li>
                 </ul>
+                </div>
                 </div>
               </div>
             ))}
