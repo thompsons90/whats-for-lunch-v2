@@ -6,7 +6,10 @@ interface RandomizedContainerProps {
   }
   
   export const RandomizedContainer = styled.div<RandomizedContainerProps>`
-    height: 100vh;
+  // border: 3px solid blue;
+  margin: 0;
+  padding: 0;
+  height: 100%;
     width: 100vw;
     display: flex;
     flex-direction: column;

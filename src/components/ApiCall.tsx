@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { apiKey } from '../assets/myKey';
 import { DetailsButton, StartButton } from '../utils/Buttons.styles';
-import { StartButtonContainer } from './ApiCall.styles';
+import {  StartButtonContainer } from './ApiCall.styles';
 import { Recipe } from '../constants';
 import { HeaderContainer, LabelContainer } from './Header.styles';
 import Switch from 'react-switch';
@@ -54,7 +54,7 @@ const ApiCall: React.FC<ApiCallProps> = ({ isDarkMode, handleChange }) => {
   }
 
   return (
-    <StartButtonContainer style={{ paddingTop: showDetails ? '50px' : '20' }}>
+    <StartButtonContainer style={{ paddingTop: showDetails ? '50px' : '20px' }}>
       <HeaderContainer>
       <StartButton onClick={handleReloadClick} disabled={loading} />
         <LabelContainer>
@@ -62,15 +62,17 @@ const ApiCall: React.FC<ApiCallProps> = ({ isDarkMode, handleChange }) => {
           <Switch onChange={handleChange} checked={isDarkMode} />
         </LabelContainer>
       </HeaderContainer>
-      <div>
+     
+
+      <div style={{ width: '90vw', marginTop: showDetails ? '500px' : '', paddingTop: showDetails ? '500px' : ''}}>
         {loading ? (
           <p>Loading...</p>
         ) : (
           <div style={{textAlign: 'left'}}>
             {/* Loop through recipes and display their titles */}
             {apiData?.recipes.map((recipe, index) => (
-              <div key={index}>
-                <img src={recipe.image} alt={`Recipe ${index + 1}`} style={{ width: '80%', borderRadius: '15%' }}/>
+              <div key={index} >
+                <img src={recipe.image} alt={`Recipe ${index + 1}`} style={{ maxWidth: showDetails ? '50%' : '100%', borderRadius: '15%' }}/>
                 <p>Recipe: {recipe.title}</p>
                 <ul style={{listStyle: 'none'}}>
                   <li>Diets: {recipe.diets.join(', ')}</li>
@@ -83,7 +85,7 @@ const ApiCall: React.FC<ApiCallProps> = ({ isDarkMode, handleChange }) => {
                 <span>Details <DetailsButton onClick={handleDetailsClick} /></span>
                 <div >
 
-                <div style={{ display: showDetails ? 'block' : 'none', height: '80vh', overflow: 'auto' }}>
+                <div style={{ display: !showDetails ? 'none' : 'block', height: '80%', width: '80%', overflow: 'auto' }}>
                 <ul style={{listStyle: 'none'}}>
                   <li>Preparation Mins: {recipe.preparationMinutes}</li>
                   <li>Cooking Mins: {recipe.cookingMinutes}</li>
@@ -116,6 +118,7 @@ const ApiCall: React.FC<ApiCallProps> = ({ isDarkMode, handleChange }) => {
           </div>
         )}
       </div>
+
     </StartButtonContainer>
   );
 };
